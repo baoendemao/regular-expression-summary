@@ -142,8 +142,17 @@
         * [^0-9]
     
 #### 匹配规则
+* 优先选择最左端的匹配结果
+    * 例如 come来匹配字符串"welcome to china. come on."
+        * 结果是welcome中的come，而不是最后的come单词，因为前者出现的最早
+    * 例如 /fat|cat|belly|yours/.exec('hello belly fat indicates yours too fat')
+        * 结果是["belly", index: 6, input: "hello belly fat indicates yours too fat"]，即第一个匹配的结果
+* 尝试匹配尽可能多的字符，直到匹配上限为止
+    * 例如 /\d+/.exec('hello12345')
+        * 结果是[ '12345', index: 5, input: 'hello12345' ]
+        * 1匹配之后实际上已经满足了，但是不会停留，而会继续接着匹配
+    * 例如 /.*[0-9]/.test('hello12345')
+        * 结果是true
+        * .* 不会匹配整行，为了最后[0-9]的匹配，会释放出一些字符，所以匹配上限要视情况而定
 
-#### demos
-本文的demos是使用Javascript编写的。
-* demo-1 普通元字符的匹配
     

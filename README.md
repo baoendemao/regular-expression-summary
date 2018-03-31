@@ -1,6 +1,6 @@
 # regular-expression-summary
 要养成按照字符来理解正则表达式的习惯。
-### 元字符
+#### 元字符
 * ^
     * ^cat 
         * 匹配以c作为一行的第一个字符，紧接一个a，紧接一个t的文本
@@ -154,5 +154,30 @@
     * 例如 /.*[0-9]/.test('hello12345')
         * 结果是true
         * .* 不会匹配整行，为了最后[0-9]的匹配，会释放出一些字符，所以匹配上限要视情况而定
+* 正则匹配中的回溯
+    * 例如 /<div>.*<\/div>/.exec('<div>hello</div>world</div>haha')
+        * 结果是["<div>hello</div>world</div>", index: 0, input: "<div>hello</div>world</div>haha"]
+        * 这个例子的.*并没有匹配全部，而是匹配到了第二个</div>。
+        * 虽然根据正则字符的解析, 先匹配<div>成功，然后.*可以匹配全部，但是为了接着的</div>的匹配，.此时的正则匹配会回溯到</div>之前
+    * 例如 /(\.\d\d[1-9]?\d+)/.test(.123)  // true
+        * .123中的3是由\d+匹配的，而不是[1-9]?。因为如果[1-9]?匹配3的话，最后的\d+将匹配失败，导致整个正则匹配失败。
+        * 这个例子同样是先匹配，然后往下继续监测，如果下面的匹配失败，则回溯
+#### JS NFA
+* 正则引擎的分类
+    * NFA
+    * DFA
+    * POSIX NFA
+* NFA和DFA比较
+    * DFA会选择最长的匹配结果, 而NFA是优先匹配
+        * 例如 /one(self)?(selfsufficient)?/.exec('oneselfsufficient') 
+        * NFA的结果是oneself， 而DFA的结果是oneselfsufficient
+* 测试JS
+    * /NFA|NFA Not/.exec('NFA Not')结果是 ["NFA", index: 0, input: "NFA Not"]
+#### Demos
+* 熟悉"常用正则元字符" demo-1.js
+* 熟悉"数字"相关正则 demo-2.js
+* 熟悉"字符"相关正则 demo-3.js
+* 熟悉"字符组" demo-4.js
+* 熟悉"多选分支" demo-5.js
 
-    
+  

@@ -174,10 +174,10 @@
 * 测试JS
     * /NFA|NFA Not/.exec('NFA Not')结果是 ["NFA", index: 0, input: "NFA Not"]
 #### Demos
-* 熟悉"常用正则元字符" demo-1.js
-* 熟悉"数字"相关正则 demo-2.js
-* 熟悉"字符"相关正则 demo-3.js
-* 熟悉"字符组" demo-4.js
-* 熟悉"多选分支" demo-5.js
+* [熟悉"常用正则元字符" demo-1.js](https://github.com/baoendemao/regular-expression-summary/blob/master/demos/demo-1.js)
+* [熟悉"数字"相关正则 demo-2.js](https://github.com/baoendemao/regular-expression-summary/blob/master/demos/demo-2.js)
+* [熟悉"字符"相关正则 demo-3.js](https://github.com/baoendemao/regular-expression-summary/blob/master/demos/demo-3.js)
+* [熟悉"字符组" demo-4.js](https://github.com/baoendemao/regular-expression-summary/blob/master/demos/demo-4.js)
+* [熟悉"多选分支" demo-5.js](https://github.com/baoendemao/regular-expression-summary/blob/master/demos/demo-5.js)
 
   

@@ -141,6 +141,38 @@
     * \D
         * [^0-9]
     
+#### 修饰符 i、g、m
+* i 即ignore, 不区分大小写
+    * 例如 /abc/i 可以匹配 abc、aBC、Abc
+* g 即global, 全局匹配
+    * 如果不带g，正则过程中字符串从左到右匹配，找到第一个符合条件的即匹配成功，返回
+    * 如果带g，则字符串从左到右，找到每个符合条件的都记录下来，直到字符串结尾位置
+    * 例如: 
+
+    ```
+    var str = 'aaaaaaaa'
+    var reg1 = /a/
+    str.match(reg1)  
+    // 结果为：["a", index: 0, input: "aaaaaaaa"]
+
+    var reg2 = /a/g
+    str.match(reg2)  
+    // 结果为：["a", "a", "a", "a", "a", "a", "a", "a"]
+    ```
+* m 即more, 多行匹配
+    * 若存在换行\n并且有开始^或结束$符的情况下，和g一起使用实现全局匹配, 因为存在换行时默认会把换行符作为一个字符任务匹配字符串是个单行。g只匹配第一行，添加m之后实现多行，每个换行符之后就是开始
+    * 例如：
+    ```
+    var str = "abcggab\nabcoab"
+    var reg1 = /^abc/gm
+    str.match(reg1)  
+    // 结果为：["abc", "abc"]
+
+    var reg2 = /ab$/gm;   
+    str.match(reg2)  
+    // 结果为：["ab", "ab"]
+    ```
+
 #### 匹配规则
 * 优先选择最左端的匹配结果
     * 例如 come来匹配字符串"welcome to china. come on."
